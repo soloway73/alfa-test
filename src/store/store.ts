@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import favoriteSlice from "./favorite.slice";
+import catsSlice from "./cats.slice";
 
 export const store = configureStore({
   reducer: {
-    favorite: favoriteSlice,
+    cats: catsSlice,
   },
 });
 
