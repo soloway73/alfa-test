@@ -9,7 +9,6 @@ export function CatList() {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, items } = useSelector((s: RootState) => s.cats);
 
-  console.log("items :>> ", items);
   useEffect(() => {
     const abortController = new AbortController();
     if (!items.length) {
