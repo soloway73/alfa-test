@@ -19,8 +19,9 @@ export function CatListItem({ cat }: { cat: ICat }) {
   };
   return (
     <div className={styles.card}>
-      <h3>Порода: {cat.breeds[0].name}</h3>
-      <img src={cat.url} alt={cat.breeds[0].name} />
+      <img className={styles.img} src={cat.url} alt={cat.breeds[0].name} />
+      <h3 className={styles.name}>{cat.breeds[0].name}</h3>
+      <div className={styles.description}>{cat.breeds[0].description}</div>
       <div className={styles.like} onClick={likeHandler}>
         <Heart className={cn(styles.heart, { [styles.liked]: cat.isLiked })} />
       </div>

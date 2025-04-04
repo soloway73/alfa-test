@@ -2,18 +2,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 10px;
-  border: 1px solid black;
+  justify-content: space-between;
+  padding: 0;
   margin: 10px;
   border-radius: 20px;
   position: relative;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  max-width: 450px;
+  height: 325px;
 }
 
 .like {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  top: 30px;
+  left: 20px;
   cursor: pointer;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.829);
@@ -23,6 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 .heart {
@@ -37,7 +40,7 @@
 
 .remove {
   position: absolute;
-  top: 50px;
+  top: 30px;
   right: 20px;
   cursor: pointer;
   border-radius: 50%;
@@ -48,9 +51,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 .remove svg {
   width: 30px;
   height: 30px;
+}
+
+.remove:hover svg,
+.like:hover svg {
+  fill: red;
+}
+
+.img {
+  width: 100%;
+  height: 240px;
+  border-radius: 20px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.description {
+  padding: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  margin-bottom: auto;
 }
