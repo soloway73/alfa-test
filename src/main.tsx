@@ -54,10 +54,11 @@ const router = createBrowserRouter(
     },
     {
       path: "*",
-      element: <div>404</div>,
+      element: <div>404 ПРОВЕРКА СВЯЗИ</div>,
     },
   ],
   {
+    basename: process.env.NODE_ENV === "production" ? "/alfa-test/" : "/",
     future: {
       v7_relativeSplatPath: true,
     },
