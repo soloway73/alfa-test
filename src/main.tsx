@@ -9,30 +9,11 @@ import { CatPage } from "./Pages/CatPage/CatPage.tsx";
 import axios from "axios";
 
 const CatList = lazy(() => import("./components/CatList/CatList"));
-// const PREFIX =
-//   "https://api.thecatapi.com/v1/images/search?api_key=live_iXt581Pzo7rOnpLSmJMXSIYk9wqF12BJOK8qNUFoZRJReXl5KjFo9qRrAPUv2Tvm&id=EHG3sOpAM";
 
 const apiKey =
   "live_iXt581Pzo7rOnpLSmJMXSIYk9wqF12BJOK8qNUFoZRJReXl5KjFo9qRrAPUv2Tvm";
-// const imageId = "EHG3sOpAM";
 
 const url = `https://api.thecatapi.com/v1/images/`;
-
-// axios
-//   .get(url, {
-//     headers: {
-//       "x-api-key": apiKey,
-//     },
-//   })
-//   .then((response) => {
-//     console.log("Результат:", response.data);
-//   })
-//   .catch((error) => {
-//     console.error(
-//       "Ошибка при выполнении запроса:",
-//       error.response ? error.response.data : error.message
-//     );
-//   });
 
 const router = createBrowserRouter(
   [
