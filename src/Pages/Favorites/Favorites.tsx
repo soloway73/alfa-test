@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { catsActions, getData } from "../../store/cats.slice";
 import { AppDispatch, RootState } from "../../store/store";
-import CatListItem from "./CatListItem/CatListItem";
-import styles from "./CatList.module.css";
-import SearchInput from "../SearchInput/SearchInput";
-import { Button } from "../Button/Button";
+import styles from "./Favorites.module.css";
+import CatListItem from "../../components/CatList/CatListItem/CatListItem";
+import { Button } from "../../components/Button/Button";
+import SearchInput from "../../components/SearchInput/SearchInput";
 
-export function CatList() {
+export function FavoritesList() {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, items } = useSelector((s: RootState) => s.cats);
   const [search, setSearch] = useState("");
@@ -19,7 +19,7 @@ export function CatList() {
   const filteredItems = useMemo(
     () =>
       items
-        ?.filter((cat) => cat.breeds[0].name.includes(search))
+        ?.filter((cat) => cat.breeds[0].name.includes(search) && cat.isLiked)
         .slice(0, 10)
         .map((cat) => <CatListItem key={cat.id} cat={cat} />),
     [items, search]
@@ -53,6 +53,7 @@ export function CatList() {
       </div>
       <h1>Коты</h1>
       {isLoading && <div>Loading</div>}
+      {filteredItems.length === 0 && <div>Ничего не найдено</div>}
       {!isLoading && items.length > 0 && (
         <div className={styles.list}>{filteredItems}</div>
       )}
@@ -60,4 +61,4 @@ export function CatList() {
   );
 }
 
-export default CatList;
+export default FavoritesList;

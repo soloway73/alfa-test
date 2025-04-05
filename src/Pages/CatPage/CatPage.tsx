@@ -7,13 +7,14 @@ import { Button } from "../../components/Button/Button";
 import { catsActions } from "../../store/cats.slice";
 import { AppDispatch, RootState } from "../../store/store";
 import styles from "./CatPage.module.css";
+import { useMemo } from "react";
 
 export function CatPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { items } = useSelector((s: RootState) => s.cats);
   const { id } = useParams();
-  const cat = items.find((i) => i.id === id);
+  const cat = useMemo(() => items.find((i) => i.id === id), [id, items]);
 
   const likeHandler = (event: React.MouseEvent) => {
     event.stopPropagation();

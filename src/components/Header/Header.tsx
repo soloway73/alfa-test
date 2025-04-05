@@ -13,7 +13,7 @@ export function Header() {
         Главная
       </NavLink>
       <NavLink
-        to="/favorite"
+        to="/favorites"
         className={({ isActive }) =>
           cn(styles.link, { [styles.active]: isActive })
         }
