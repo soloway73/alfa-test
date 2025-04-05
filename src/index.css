@@ -3,6 +3,11 @@
   line-height: 1.5;
   font-weight: 400;
 }
+#root {
+  max-width: 1920px;
+  margin: 0 auto;
+  text-align: center;
+}
 
 * {
   margin: 0;

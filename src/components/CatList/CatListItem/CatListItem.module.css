@@ -8,13 +8,13 @@
   border-radius: 20px;
   position: relative;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-  max-width: 450px;
+  max-width: 280px;
   height: 325px;
 }
 
 .like {
   position: absolute;
-  top: 30px;
+  top: 12px;
   left: 20px;
   cursor: pointer;
   border-radius: 50%;
@@ -40,7 +40,7 @@
 
 .remove {
   position: absolute;
-  top: 30px;
+  top: 12px;
   right: 20px;
   cursor: pointer;
   border-radius: 50%;

@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+}
+
+/* .sidebar *:first-child {
+  margin-top: 300px;
+} */
+/* 
+.sidebar *:last-child {
+  margin-bottom: auto;
+} */
+
+.link {
+  text-decoration: none;
+  font-weight: bold;
+  margin: 20px auto;
+}
+.active {
+  color: red;
+  text-decoration: underline;
+}

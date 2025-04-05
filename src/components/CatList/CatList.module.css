@@ -1,2 +1,25 @@
 .list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.catList {
+  overflow: auto;
+}
+
+.refresh {
+  margin: 20px auto;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.controls {
+  display: flex;
+}
+
+.searchInput {
+  margin: auto;
 }
