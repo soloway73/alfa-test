@@ -26,7 +26,7 @@ export function CatList() {
     setSearch(e.target.value);
   };
 
-  const filteredItems = items.filter((cat) =>
+  const filteredItems = items?.filter((cat) =>
     cat.breeds[0].name.includes(search)
   );
 

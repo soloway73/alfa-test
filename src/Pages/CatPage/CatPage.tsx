@@ -37,7 +37,7 @@ export function CatPage() {
         </div>
       </div>
       <h1>{cat?.breeds[0].name}</h1>
-      <div className={styles.product}>
+      <div className={styles.content}>
         <img
           className={styles.image}
           src={cat?.url}

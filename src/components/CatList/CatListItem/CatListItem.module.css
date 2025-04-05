@@ -39,6 +39,11 @@
   fill-rule: nonzero !important;
 }
 
+.remove:hover svg,
+.like:hover svg {
+  fill: red;
+}
+
 .remove {
   position: absolute;
   top: 12px;
@@ -58,11 +63,6 @@
 .remove svg {
   width: 30px;
   height: 30px;
-}
-
-.remove:hover svg,
-.like:hover svg {
-  fill: red;
 }
 
 .img {

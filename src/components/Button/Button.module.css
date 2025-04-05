@@ -19,9 +19,10 @@
 
 .btnWhite {
   background-color: #fff;
-  color: #777;
+  color: black;
   font-weight: bold;
   text-transform: uppercase;
+  height: 50px;
 }
 
 .btn::after {

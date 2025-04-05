@@ -1,7 +1,7 @@
 import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { createBrowserRouter, defer, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout.tsx";
 import "./index.css";
 import { store } from "./store/store.ts";

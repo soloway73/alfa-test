@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
 import styles from "./Button.module.css";
-import classNames from "classnames";
+import cn from "classnames";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
@@ -8,9 +8,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({ children, className, ...props }: ButtonProps) {
   return (
-    <div className={styles.buttonContainer}>
+    <>
       <button
-        className={classNames(
+        className={cn(
+          styles.buttonContainer,
           styles.btn,
           styles.btnWhite,
           styles.btnAnimated,
@@ -20,6 +21,6 @@ export function Button({ children, className, ...props }: ButtonProps) {
       >
         {children}
       </button>
-    </div>
+    </>
   );
 }
