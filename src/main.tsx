@@ -6,14 +6,13 @@ import { Layout } from "./components/Layout/Layout.tsx";
 import "./index.css";
 import { store } from "./store/store.ts";
 import { CatPage } from "./Pages/CatPage/CatPage.tsx";
-import axios from "axios";
 
 const CatList = lazy(() => import("./components/CatList/CatList"));
 
-const apiKey =
-  "live_iXt581Pzo7rOnpLSmJMXSIYk9wqF12BJOK8qNUFoZRJReXl5KjFo9qRrAPUv2Tvm";
+// const apiKey =
+//   "live_iXt581Pzo7rOnpLSmJMXSIYk9wqF12BJOK8qNUFoZRJReXl5KjFo9qRrAPUv2Tvm";
 
-const url = `https://api.thecatapi.com/v1/images/`;
+// const url = `https://api.thecatapi.com/v1/images/`;
 
 const router = createBrowserRouter(
   [
@@ -33,22 +32,6 @@ const router = createBrowserRouter(
           path: "/cats/:id",
           element: <CatPage />,
           errorElement: <>Ошибка</>,
-          loader: async ({ params }) => {
-            return defer({
-              data: new Promise((resolve, reject) => {
-                setTimeout(() => {
-                  axios
-                    .get(url + `${params.id}`, {
-                      headers: {
-                        "x-api-key": apiKey,
-                      },
-                    })
-                    .then((data) => resolve(data))
-                    .catch((e) => reject(e));
-                }, 2000);
-              }),
-            });
-          },
         },
       ],
     },

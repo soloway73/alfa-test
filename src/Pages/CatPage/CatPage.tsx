@@ -1,42 +1,52 @@
-import { Await, useLoaderData, useNavigate } from "react-router-dom";
-import { ICat } from "../../interfaces/cat.interface";
-import styles from "./CatPage.module.css";
-import { Suspense } from "react";
+import cn from "classnames";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import BackBtn from "../../assets/backBtn.svg?react";
+import Heart from "../../assets/Heart.svg?react";
 import { Button } from "../../components/Button/Button";
+import { catsActions } from "../../store/cats.slice";
+import { AppDispatch, RootState } from "../../store/store";
+import styles from "./CatPage.module.css";
 
 export function CatPage() {
-  const data = useLoaderData() as { data: ICat };
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const { items } = useSelector((s: RootState) => s.cats);
+  const { id } = useParams();
+  const cat = items.find((i) => i.id === id);
+
+  const likeHandler = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    if (cat?.id) {
+      dispatch(catsActions.like(cat.id));
+    }
+  };
+
   return (
     <>
-      <Suspense fallback={<div>Loading</div>}>
-        <Await resolve={data.data}>
-          {({ data }: { data: ICat }) => (
-            <>
-              <div className={styles.head}>
-                <Button
-                  className={styles.altBackBtn}
-                  onClick={() => navigate("/")}
-                >
-                  <img src="/backBtn.svg" alt="Назад" /> Назад
-                </Button>
-                <h1>{data.breeds[0].name}</h1>
-              </div>
-              <div className={styles.product}>
-                <img
-                  className={styles.image}
-                  src={data.url}
-                  alt="Изображение продукта"
-                />
-                <div className={styles.description}>
-                  <p>{data.breeds[0].description}</p>
-                  <Button>Добавить в избранное</Button>
-                </div>
-              </div>
-            </>
-          )}
-        </Await>
-      </Suspense>
+      <div className={styles.head}>
+        <Button className={styles.altBackBtn} onClick={() => navigate("/")}>
+          <BackBtn /> Назад
+        </Button>
+        <div className={styles.like} onClick={likeHandler}>
+          <Heart
+            className={cn(styles.heart, {
+              [styles.liked]: cat?.isLiked,
+            })}
+          />
+        </div>
+      </div>
+      <h1>{cat?.breeds[0].name}</h1>
+      <div className={styles.product}>
+        <img
+          className={styles.image}
+          src={cat?.url}
+          alt="Изображение продукта"
+        />
+        <div className={styles.description}>
+          <p>{cat?.breeds[0].description}</p>
+        </div>
+      </div>
     </>
   );
 }
