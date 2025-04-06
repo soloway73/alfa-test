@@ -6,24 +6,41 @@ import CatListItem from "./CatListItem/CatListItem";
 import styles from "./CatList.module.css";
 import SearchInput from "../SearchInput/SearchInput";
 import { Button } from "../Button/Button";
+import { Pagination, Stack } from "@mui/material";
 
 export function CatList() {
+  const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, items } = useSelector((s: RootState) => s.cats);
   const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
-  const filteredItems = useMemo(
-    () =>
-      items
-        ?.filter((cat) => cat.breeds[0].name.includes(search))
-        .slice(0, 10)
-        .map((cat) => <CatListItem key={cat.id} cat={cat} />),
-    [items, search]
-  );
+  const itemsPerPage = 10;
+  const filteredItems = useMemo(() => {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return items
+      ?.filter((cat) => cat.breeds[0].name.includes(search))
+      .slice(startIndex, endIndex)
+      .map((cat) => <CatListItem key={cat.id} cat={cat} />);
+  }, [items, page, search]);
+
+  const pageCount = useMemo(() => {
+    return Math.ceil(items?.length / itemsPerPage);
+  }, [items]);
+
+  useEffect(() => {
+    if (page > pageCount && pageCount > 0) {
+      setPage(pageCount);
+    }
+  }, [page, pageCount]);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -54,7 +71,21 @@ export function CatList() {
       <h1>Коты</h1>
       {isLoading && <div>Loading</div>}
       {!isLoading && items.length > 0 && (
-        <div className={styles.list}>{filteredItems}</div>
+        <>
+          <Stack spacing={2} alignItems="center" mt={2}>
+            <Pagination
+              count={pageCount}
+              page={page}
+              onChange={handleChange}
+              variant="outlined"
+              shape="rounded"
+              size="large"
+              showFirstButton
+              showLastButton
+            />
+          </Stack>
+          <div className={styles.list}>{filteredItems}</div>
+        </>
       )}
     </div>
   );
