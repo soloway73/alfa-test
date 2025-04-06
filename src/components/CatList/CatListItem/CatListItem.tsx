@@ -27,7 +27,12 @@ export function CatListItem({ cat }: { cat: ICat }) {
   };
   return (
     <div className={styles.card} onClick={handlerCardClick}>
-      <img className={styles.img} src={cat.url} alt={cat.breeds[0].name} />
+      <img
+        className={styles.img}
+        src={cat.url}
+        alt={cat.breeds[0].name}
+        loading="lazy"
+      />
       <h3 className={styles.name}>{cat.breeds[0].name}</h3>
       <div className={styles.description}>{cat.breeds[0].description}</div>
       <div className={styles.like} onClick={likeHandler}>

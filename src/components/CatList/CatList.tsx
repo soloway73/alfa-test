@@ -9,33 +9,39 @@ import { Button } from "../Button/Button";
 import { Pagination, Stack } from "@mui/material";
 
 export function CatList() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { isLoading, items } = useSelector((s: RootState) => s.cats);
+  const [search, setSearch] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+
+  const itemsPerPage = 10;
+
+  const filteredItems = useMemo(() => {
+    return items?.filter((cat) => cat?.breeds[0]?.name?.includes(search));
+  }, [items, search]);
+
+  const pageCount = useMemo(() => {
+    return Math.ceil(filteredItems?.length / itemsPerPage);
+  }, [filteredItems?.length]);
+
+  const slicedItems = useMemo(() => {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredItems?.slice(startIndex, endIndex);
+  }, [filteredItems, page]);
+
+  const catList = useMemo(() => {
+    return slicedItems?.map((cat) => <CatListItem key={cat.id} cat={cat} />);
+  }, [slicedItems]);
+
   const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
-
-  const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, items } = useSelector((s: RootState) => s.cats);
-  const [search, setSearch] = useState("");
-  const [page, setPage] = useState(1);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
     setPage(1);
   };
-
-  const itemsPerPage = 10;
-  const filteredItems = useMemo(() => {
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return items
-      ?.filter((cat) => cat.breeds[0].name.includes(search))
-      .slice(startIndex, endIndex)
-      .map((cat) => <CatListItem key={cat.id} cat={cat} />);
-  }, [items, page, search]);
-
-  const pageCount = useMemo(() => {
-    return Math.ceil(items?.length / itemsPerPage);
-  }, [items?.length]);
 
   useEffect(() => {
     if (page > pageCount && pageCount > 0) {
@@ -91,7 +97,7 @@ export function CatList() {
               className={styles.pagination}
             />
           </Stack>
-          <div className={styles.list}>{filteredItems}</div>
+          <div className={styles.list}>{catList}</div>
         </>
       )}
     </div>
