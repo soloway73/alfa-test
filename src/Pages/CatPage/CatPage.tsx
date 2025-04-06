@@ -38,6 +38,7 @@ export function CatPage() {
         </div>
       </div>
       <h1>{cat?.breeds[0].name}</h1>
+      <h2>Страна: {cat?.breeds[0].origin}</h2>
       <div className={styles.content}>
         <img
           className={styles.image}
@@ -46,6 +47,7 @@ export function CatPage() {
         />
         <div className={styles.description}>
           <p>{cat?.breeds[0].description}</p>
+          <p>Особенности: {cat?.breeds[0].temperament}</p>
         </div>
       </div>
     </>
