@@ -72,7 +72,12 @@ export function CatList() {
       {isLoading && <div>Loading</div>}
       {!isLoading && items.length > 0 && (
         <>
-          <Stack spacing={2} alignItems="center" mt={2}>
+          <Stack
+            spacing={2}
+            alignItems="center"
+            justifyContent={"center"}
+            mt={2}
+          >
             <Pagination
               count={pageCount}
               page={page}
@@ -82,6 +87,7 @@ export function CatList() {
               size="large"
               showFirstButton
               showLastButton
+              className={styles.pagination}
             />
           </Stack>
           <div className={styles.list}>{filteredItems}</div>

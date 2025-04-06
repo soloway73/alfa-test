@@ -24,3 +24,9 @@
 .searchInput {
   margin: auto;
 }
+
+.pagination ul {
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}

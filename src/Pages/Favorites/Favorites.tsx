@@ -20,7 +20,6 @@ export function FavoritesList() {
     () =>
       items
         ?.filter((cat) => cat.breeds[0].name.includes(search) && cat.isLiked)
-        .slice(0, 10)
         .map((cat) => <CatListItem key={cat.id} cat={cat} />),
     [items, search]
   );
