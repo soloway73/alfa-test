@@ -21,8 +21,12 @@ export function CatList() {
   }, [items, search]);
 
   const pageCount = useMemo(() => {
-    return Math.ceil(filteredItems?.length / itemsPerPage);
-  }, [filteredItems?.length]);
+    const result = Math.ceil(filteredItems?.length / itemsPerPage);
+    if (page > result && result > 0) {
+      setPage(result);
+    }
+    return result;
+  }, [filteredItems?.length, page]);
 
   const slicedItems = useMemo(() => {
     const startIndex = (page - 1) * itemsPerPage;
@@ -42,12 +46,6 @@ export function CatList() {
     setSearch(e.target.value);
     setPage(1);
   };
-
-  useEffect(() => {
-    if (page > pageCount && pageCount > 0) {
-      setPage(pageCount);
-    }
-  }, [page, pageCount]);
 
   useEffect(() => {
     const abortController = new AbortController();
