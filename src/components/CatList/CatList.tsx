@@ -20,6 +20,7 @@ export function CatList() {
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
+    setPage(1);
   };
 
   const itemsPerPage = 10;
@@ -34,7 +35,7 @@ export function CatList() {
 
   const pageCount = useMemo(() => {
     return Math.ceil(items?.length / itemsPerPage);
-  }, [items]);
+  }, [items?.length]);
 
   useEffect(() => {
     if (page > pageCount && pageCount > 0) {
