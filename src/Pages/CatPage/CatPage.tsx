@@ -40,10 +40,9 @@ export function CatPage() {
     setIsFormVisible(false);
   };
 
-  const saveHandler = (e: React.MouseEvent, catValues: IFormCat) => {
-    e.preventDefault();
-    setIsFormVisible(false);
+  const saveHandler = (catValues: IFormCat) => {
     catsActions.edit(catValues);
+    setIsFormVisible(false);
   };
 
   return (

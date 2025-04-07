@@ -7,7 +7,7 @@ import { useState } from "react";
 export interface FormProps {
   className?: string;
   cancelHandler?: (e: React.MouseEvent) => void;
-  saveHandler?: (e: React.MouseEvent, catValues: IFormCat) => void;
+  saveHandler?: (catValues: IFormCat) => void;
   cat: ICat;
 }
 
@@ -23,7 +23,7 @@ export function Form({
   className = "",
   cat = {} as ICat,
   cancelHandler = () => {},
-  saveHandler = () => {},
+  saveHandler,
 }: FormProps) {
   // const INITIAL_STATE: IFormCat = {
   //   id: cat.id,
@@ -112,7 +112,7 @@ export function Form({
         </Button>
         <Button
           className={styles.buttonSave}
-          onClick={(e) => saveHandler(e, catValues)}
+          onClick={() => saveHandler?.(catValues)}
         >
           Сохранить
         </Button>
