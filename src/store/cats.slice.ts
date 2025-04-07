@@ -73,7 +73,6 @@ export const catsSlice = createSlice({
     },
     add: (state, action: PayloadAction<IFormCat>) => {
       state.items = [
-        ...state.items,
         {
           id: action.payload.id,
           url: action?.payload.url,
@@ -87,6 +86,7 @@ export const catsSlice = createSlice({
           ],
           isLiked: false,
         },
+        ...state.items,
       ];
     },
   },

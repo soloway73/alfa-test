@@ -11,10 +11,14 @@
 .refresh,
 .createBtn {
   margin: 20px auto;
-  background-color: #fff;
+  background-color: white;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   border-radius: 20px;
   padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .controls {
@@ -35,9 +39,15 @@
   align-items: center;
   padding: 0 20px;
   width: 100%;
+  gap: 16px;
 }
 
 .formActive {
   display: flex !important;
   z-index: 2;
+}
+
+.createBtn svg {
+  width: 20px;
+  height: 20px;
 }

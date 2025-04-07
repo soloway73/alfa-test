@@ -12,6 +12,8 @@ import Form, { IFormCat } from "../Form/Form";
 import cn from "classnames";
 import { ICat } from "../../interfaces/cat.interface";
 import { Loading } from "../Loading/Loading";
+import NewPost from "../../assets/newPost.svg?react";
+import Select from "../Select/Select";
 
 const catEmptyForm: ICat = {
   id: Date.now().toLocaleString(),
@@ -30,29 +32,47 @@ export function CatList() {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, items } = useSelector((s: RootState) => s.cats);
   const [search, setSearch] = useState<string>("");
+  const [city, setCity] = useState<string>("");
   const [isLikedFilter, setIsLikedFilter] = useState<boolean>(false);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
 
   const itemsPerPage = 10;
 
+  const uniqueCities = useMemo(
+    () => Array.from(new Set(items.map((cat) => cat.breeds[0].origin))),
+    [items]
+  );
+
   // const filteredItems = useMemo(() => {
   //   return items?.filter((cat) => cat?.breeds[0]?.name?.includes(search));
   // }, [items, search]);
 
-  const filteredItems = useMemo(() => {
-    let result = items;
-
-    if (isLikedFilter) {
-      result = result?.filter(
-        (cat) => cat?.isLiked && cat?.breeds[0]?.name?.includes(search)
-      );
+  const handleChangeCityFilter = (e: string) => {
+    if (e === "Все") {
+      setCity("");
     } else {
-      result = result?.filter((cat) => cat?.breeds[0]?.name?.includes(search));
+      setCity(e);
     }
+  };
 
-    return result;
-  }, [items, search, isLikedFilter]);
+  const filteredItems = useMemo(() => {
+    let filterArray = [...items];
+
+    if (city) {
+      filterArray = filterArray?.filter(
+        (cat) => cat?.breeds[0]?.origin === city
+      );
+    }
+    if (isLikedFilter) {
+      filterArray = filterArray?.filter((cat) => cat?.isLiked);
+    }
+    filterArray = filterArray?.filter((cat) =>
+      cat?.breeds[0]?.name?.includes(search)
+    );
+
+    return filterArray;
+  }, [items, city, isLikedFilter, search]);
 
   const pageCount = useMemo(() => {
     const result = Math.ceil(filteredItems?.length / itemsPerPage);
@@ -122,6 +142,7 @@ export function CatList() {
           className={styles.createBtn}
           onClick={() => setIsFormVisible(true)}
         >
+          <NewPost />
           Создать
         </Button>
         <SearchInput
@@ -138,6 +159,11 @@ export function CatList() {
           >
             Только избранные
           </Checkbox>
+          <Select
+            value={city}
+            setValue={handleChangeCityFilter}
+            items={uniqueCities}
+          />
         </div>
       </div>
       <h1>Коты</h1>
