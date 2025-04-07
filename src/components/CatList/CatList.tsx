@@ -7,18 +7,34 @@ import styles from "./CatList.module.css";
 import SearchInput from "../SearchInput/SearchInput";
 import { Button } from "../Button/Button";
 import { Pagination, Stack } from "@mui/material";
+import { Checkbox } from "../Checkbox/Checkbox";
 
 export function CatList() {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, items } = useSelector((s: RootState) => s.cats);
   const [search, setSearch] = useState<string>("");
+  const [isLikedFilter, setIsLikedFilter] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
 
   const itemsPerPage = 10;
 
+  // const filteredItems = useMemo(() => {
+  //   return items?.filter((cat) => cat?.breeds[0]?.name?.includes(search));
+  // }, [items, search]);
+
   const filteredItems = useMemo(() => {
-    return items?.filter((cat) => cat?.breeds[0]?.name?.includes(search));
-  }, [items, search]);
+    let result = items;
+
+    if (isLikedFilter) {
+      result = result?.filter(
+        (cat) => cat?.isLiked && cat?.breeds[0]?.name?.includes(search)
+      );
+    } else {
+      result = result?.filter((cat) => cat?.breeds[0]?.name?.includes(search));
+    }
+
+    return result;
+  }, [items, search, isLikedFilter]);
 
   const pageCount = useMemo(() => {
     const result = Math.ceil(filteredItems?.length / itemsPerPage);
@@ -72,6 +88,15 @@ export function CatList() {
           onChange={onChangeHandler}
           value={search}
         />
+        <div className={styles.filter}>
+          <Checkbox
+            className={styles.checkbox}
+            checked={isLikedFilter}
+            onChange={(e) => setIsLikedFilter(e.target.checked)}
+          >
+            Только избранные
+          </Checkbox>
+        </div>
       </div>
       <h1>Коты</h1>
       {isLoading && <div>Loading</div>}
