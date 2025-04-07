@@ -23,6 +23,12 @@
   flex-direction: column;
 }
 
+.label * {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
 .buttons {
   display: flex;
   gap: 20px;
@@ -42,4 +48,13 @@
 
 .buttonSave {
   background-color: #3d7e3b;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
 }

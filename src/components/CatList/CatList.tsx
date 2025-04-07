@@ -11,6 +11,7 @@ import { Checkbox } from "../Checkbox/Checkbox";
 import Form, { IFormCat } from "../Form/Form";
 import cn from "classnames";
 import { ICat } from "../../interfaces/cat.interface";
+import { Loading } from "../Loading/Loading";
 
 const catEmptyForm: ICat = {
   id: Date.now().toLocaleString(),
@@ -140,7 +141,7 @@ export function CatList() {
         </div>
       </div>
       <h1>Коты</h1>
-      {isLoading && <div>Loading</div>}
+      {isLoading && <Loading />}
       {!isLoading && items.length > 0 && (
         <>
           <Stack

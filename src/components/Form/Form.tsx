@@ -40,73 +40,77 @@ export function Form({
       className={cn(styles.form, className)}
       onSubmit={() => saveHandler?.(catValues)}
     >
-      <label className={styles.label}>
-        Порода
-        <input
-          type="text"
-          value={name}
-          onChange={(e) =>
-            setCatValues({
-              ...catValues,
-              name: e.target.value,
-            })
-          }
-        />
-      </label>
-      <label className={styles.label}>
-        Страна
-        <input
-          type="text"
-          value={origin}
-          onChange={(e) =>
-            setCatValues({
-              ...catValues,
-              origin: e.target.value,
-            })
-          }
-        />
-      </label>
-      <label className={styles.label}>
-        Описание
-        <textarea
-          rows={10}
-          value={description}
-          onChange={(e) =>
-            setCatValues({
-              ...catValues,
-              description: e.target.value,
-            })
-          }
-        />
-      </label>
-      <label className={styles.label}>
-        Особенности
-        <input
-          type="text"
-          value={temperament}
-          onChange={(e) =>
-            setCatValues({
-              ...catValues,
-              temperament: e.target.value,
-            })
-          }
-        />
-      </label>
-      <label className={styles.label}>
-        Ссылка на фото
-        <input
-          type="text"
-          value={url}
-          onChange={(e) => setCatValues({ ...catValues, url: e.target.value })}
-        />
-      </label>
-      <div className={styles.buttons}>
-        <Button className={styles.buttonCancel} onClick={cancelHandler}>
-          Отмена
-        </Button>
-        <Button className={styles.buttonSave} type="submit">
-          Сохранить
-        </Button>
+      <div className={styles.formContainer}>
+        <label className={styles.label}>
+          Порода
+          <input
+            type="text"
+            value={name}
+            onChange={(e) =>
+              setCatValues({
+                ...catValues,
+                name: e.target.value,
+              })
+            }
+          />
+        </label>
+        <label className={styles.label}>
+          Страна
+          <input
+            type="text"
+            value={origin}
+            onChange={(e) =>
+              setCatValues({
+                ...catValues,
+                origin: e.target.value,
+              })
+            }
+          />
+        </label>
+        <label className={styles.label}>
+          Описание
+          <textarea
+            rows={10}
+            value={description}
+            onChange={(e) =>
+              setCatValues({
+                ...catValues,
+                description: e.target.value,
+              })
+            }
+          />
+        </label>
+        <label className={styles.label}>
+          Особенности
+          <input
+            type="text"
+            value={temperament}
+            onChange={(e) =>
+              setCatValues({
+                ...catValues,
+                temperament: e.target.value,
+              })
+            }
+          />
+        </label>
+        <label className={styles.label}>
+          Ссылка на фото
+          <input
+            type="text"
+            value={url}
+            onChange={(e) =>
+              setCatValues({ ...catValues, url: e.target.value })
+            }
+          />
+        </label>
+        <div className={styles.buttons}>
+          <Button className={styles.buttonCancel} onClick={cancelHandler}>
+            Отмена
+          </Button>
+          <Button className={styles.buttonSave} type="submit">
+            Сохранить
+          </Button>
+        </div>
       </div>
     </form>
   );
