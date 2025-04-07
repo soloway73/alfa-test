@@ -74,8 +74,8 @@ export function Form({
       </label>
       <label className={styles.label}>
         Описание
-        <input
-          type="text"
+        <textarea
+          rows={10}
           value={description}
           onChange={(e) =>
             setCatValues({

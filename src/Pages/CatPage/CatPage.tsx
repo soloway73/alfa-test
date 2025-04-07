@@ -41,7 +41,7 @@ export function CatPage() {
   };
 
   const saveHandler = (catValues: IFormCat) => {
-    catsActions.edit(catValues);
+    dispatch(catsActions.edit(catValues));
     setIsFormVisible(false);
   };
 
