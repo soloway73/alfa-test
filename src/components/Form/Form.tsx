@@ -45,7 +45,10 @@ export function Form({
   const { url, name, origin, description, temperament } = catValues;
 
   return (
-    <form className={cn(styles.form, className)}>
+    <form
+      className={cn(styles.form, className)}
+      onSubmit={() => saveHandler?.(catValues)}
+    >
       <label className={styles.label}>
         Порода
         <input
@@ -110,10 +113,7 @@ export function Form({
         <Button className={styles.buttonCancel} onClick={cancelHandler}>
           Отмена
         </Button>
-        <Button
-          className={styles.buttonSave}
-          onClick={() => saveHandler?.(catValues)}
-        >
+        <Button className={styles.buttonSave} type="submit">
           Сохранить
         </Button>
       </div>
