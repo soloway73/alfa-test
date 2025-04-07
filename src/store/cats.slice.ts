@@ -71,6 +71,24 @@ export const catsSlice = createSlice({
         return i;
       });
     },
+    add: (state, action: PayloadAction<IFormCat>) => {
+      state.items = [
+        ...state.items,
+        {
+          id: action.payload.id,
+          url: action?.payload.url,
+          breeds: [
+            {
+              name: action.payload.name,
+              description: action.payload.description,
+              temperament: action.payload.temperament,
+              origin: action.payload.origin,
+            },
+          ],
+          isLiked: false,
+        },
+      ];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getData.fulfilled, (state, action) => {

@@ -8,12 +8,29 @@ import SearchInput from "../SearchInput/SearchInput";
 import { Button } from "../Button/Button";
 import { Pagination, Stack } from "@mui/material";
 import { Checkbox } from "../Checkbox/Checkbox";
+import Form, { IFormCat } from "../Form/Form";
+import cn from "classnames";
+import { ICat } from "../../interfaces/cat.interface";
+
+const catEmptyForm: ICat = {
+  id: Date.now().toLocaleString(),
+  url: "",
+  breeds: [
+    {
+      name: "",
+      description: "",
+      temperament: "",
+      origin: "",
+    },
+  ],
+};
 
 export function CatList() {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, items } = useSelector((s: RootState) => s.cats);
   const [search, setSearch] = useState<string>("");
   const [isLikedFilter, setIsLikedFilter] = useState<boolean>(false);
+  const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
 
   const itemsPerPage = 10;
@@ -63,6 +80,16 @@ export function CatList() {
     setPage(1);
   };
 
+  const cancelHandler = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsFormVisible(false);
+  };
+
+  const saveHandler = (catValues: IFormCat) => {
+    dispatch(catsActions.add(catValues));
+    setIsFormVisible(false);
+  };
+
   useEffect(() => {
     const abortController = new AbortController();
     if (!items.length) {
@@ -75,12 +102,26 @@ export function CatList() {
 
   return (
     <div className={styles.catList}>
+      {isFormVisible && (
+        <Form
+          cat={catEmptyForm}
+          className={cn({ [styles.formActive]: isFormVisible })}
+          cancelHandler={cancelHandler}
+          saveHandler={saveHandler}
+        />
+      )}
       <div className={styles.controls}>
         <Button
           onClick={() => dispatch(catsActions.clean())}
           className={styles.refresh}
         >
           Обновить
+        </Button>
+        <Button
+          className={styles.createBtn}
+          onClick={() => setIsFormVisible(true)}
+        >
+          Создать
         </Button>
         <SearchInput
           className={styles.searchInput}

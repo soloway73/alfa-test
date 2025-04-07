@@ -21,19 +21,10 @@ export interface IFormCat {
 }
 export function Form({
   className = "",
-  cat = {} as ICat,
+  cat,
   cancelHandler = () => {},
   saveHandler,
 }: FormProps) {
-  // const INITIAL_STATE: IFormCat = {
-  //   id: cat.id,
-  //   name: cat.breeds[0].name,
-  //   origin: cat.breeds[0].origin,
-  //   description: cat.breeds[0].description,
-  //   temperament: cat.breeds[0].temperament,
-  //   url: cat.url,
-  // };
-
   const [catValues, setCatValues] = useState<IFormCat>({
     id: cat.id,
     name: cat.breeds[0].name,

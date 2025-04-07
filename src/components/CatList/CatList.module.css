@@ -8,7 +8,8 @@
   overflow: auto;
 }
 
-.refresh {
+.refresh,
+.createBtn {
   margin: 20px auto;
   background-color: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
@@ -34,4 +35,9 @@
   align-items: center;
   padding: 0 20px;
   width: 100%;
+}
+
+.formActive {
+  display: flex !important;
+  z-index: 2;
 }
