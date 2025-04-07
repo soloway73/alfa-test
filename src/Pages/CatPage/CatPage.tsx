@@ -7,14 +7,26 @@ import { Button } from "../../components/Button/Button";
 import { catsActions } from "../../store/cats.slice";
 import { AppDispatch, RootState } from "../../store/store";
 import styles from "./CatPage.module.css";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import PenIcon from "../../assets/pen-icon.svg?react";
+import Form, { IFormCat } from "../../components/Form/Form";
+import { ICat } from "../../interfaces/cat.interface";
 
 export function CatPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { items } = useSelector((s: RootState) => s.cats);
   const { id } = useParams();
-  const cat = useMemo(() => items.find((i) => i.id === id), [id, items]);
+  const cat = useMemo(
+    () => items.find((i) => i.id === id),
+    [id, items]
+  ) as ICat;
+  const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
+
+  const editHandler = () => {
+    console.log("isFormVisible :>> ", isFormVisible);
+    setIsFormVisible(true);
+  };
 
   const likeHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -23,11 +35,33 @@ export function CatPage() {
     }
   };
 
+  const cancelHandler = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsFormVisible(false);
+  };
+
+  const saveHandler = (e: React.MouseEvent, catValues: IFormCat) => {
+    e.preventDefault();
+    setIsFormVisible(false);
+    catsActions.edit(catValues);
+  };
+
   return (
     <>
+      {isFormVisible && (
+        <Form
+          className={cn({ [styles.formActive]: isFormVisible })}
+          cat={cat}
+          cancelHandler={cancelHandler}
+          saveHandler={saveHandler}
+        />
+      )}
       <div className={styles.head}>
         <Button className={styles.altBackBtn} onClick={() => navigate("/")}>
           <BackBtn /> Назад
+        </Button>
+        <Button className={styles.edit} onClick={editHandler}>
+          <PenIcon /> Редактировать
         </Button>
         <div className={styles.like} onClick={likeHandler}>
           <Heart

@@ -1,0 +1,45 @@
+.form {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+  margin: 20px auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(100vh - 40px);
+}
+
+.formActive {
+  display: flex;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.buttonCancel,
+.buttonSave {
+  flex-grow: 1;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+  color: white;
+}
+
+.buttonCancel {
+  background-color: #ad5454;
+}
+
+.buttonSave {
+  background-color: #3d7e3b;
+}

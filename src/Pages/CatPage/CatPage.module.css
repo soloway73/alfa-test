@@ -1,4 +1,5 @@
-.altBackBtn {
+.altBackBtn,
+.edit {
   gap: 10px;
   background-color: #fff;
   border: none;
@@ -10,6 +11,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.edit svg {
+  width: 24px;
+  height: 24px;
 }
 
 .like {
@@ -54,4 +60,8 @@
 
 .description {
   padding: 0 20px;
+}
+
+.formActive {
+  display: flex !important;
 }

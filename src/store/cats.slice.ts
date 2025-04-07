@@ -2,6 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import { ICat } from "../interfaces/cat.interface";
 import { loadState } from "./storage";
+import { IFormCat } from "../components/Form/Form";
 export const CATS_API =
   "https://api.thecatapi.com/v1/images/search?api_key=live_iXt581Pzo7rOnpLSmJMXSIYk9wqF12BJOK8qNUFoZRJReXl5KjFo9qRrAPUv2Tvm&limit=100&has_breeds=true";
 export const CATS_PERSISTENT_STATE = "cats";
@@ -49,6 +50,26 @@ export const catsSlice = createSlice({
       state.items = state.items.map((i) =>
         i.id === action.payload ? { ...i, isLiked: !i.isLiked } : i
       );
+    },
+    edit: (state, action: PayloadAction<IFormCat>) => {
+      state.items = state.items.map((i) => {
+        if (i.id === action.payload.id) {
+          return {
+            ...i,
+            url: action?.payload.url,
+            breeds: [
+              {
+                ...i.breeds[0],
+                name: action.payload.name,
+                description: action.payload.description,
+                temperament: action.payload.temperament,
+                origin: action.payload.origin,
+              },
+            ],
+          };
+        }
+        return i;
+      });
     },
   },
   extraReducers: (builder) => {
