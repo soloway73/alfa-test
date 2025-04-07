@@ -23,7 +23,7 @@
 
 .controls {
   display: flex;
-  padding: 0 20px;
+  padding: 0 50px;
   flex-wrap: wrap;
 }
 
@@ -38,7 +38,6 @@
   justify-content: center;
   align-items: center;
   padding: 0 20px;
-  width: 100%;
   gap: 16px;
 }
 
@@ -50,4 +49,42 @@
 .createBtn svg {
   width: 20px;
   height: 20px;
+}
+
+.checkboxHeart {
+  width: 20px;
+  height: 20px;
+}
+
+.checkbox input {
+  display: none;
+}
+
+.checkbox {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  text-transform: uppercase;
+  height: 50px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: auto;
+}
+
+.checkbox:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.checkbox:active {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.checked {
+  fill: red;
+  fill-rule: nonzero !important;
 }

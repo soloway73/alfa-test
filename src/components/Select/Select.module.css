@@ -1,0 +1,33 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: auto;
+}
+
+.select {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  text-transform: uppercase;
+  height: 50px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px auto;
+  border: none;
+}
+
+.select:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.select:active {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  border: none;
+}

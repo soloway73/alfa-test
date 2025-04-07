@@ -1,14 +1,8 @@
 .header {
   display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid black;
 }
-
-/* .sidebar *:first-child {
-  margin-top: 300px;
-} */
-/* 
-.sidebar *:last-child {
-  margin-bottom: auto;
-} */
 
 .link {
   text-decoration: none;

@@ -14,6 +14,7 @@ import { ICat } from "../../interfaces/cat.interface";
 import { Loading } from "../Loading/Loading";
 import NewPost from "../../assets/newPost.svg?react";
 import Select from "../Select/Select";
+import Heart from "../../assets/Heart.svg?react";
 
 const catEmptyForm: ICat = {
   id: Date.now().toLocaleString(),
@@ -43,10 +44,6 @@ export function CatList() {
     () => Array.from(new Set(items.map((cat) => cat.breeds[0].origin))),
     [items]
   );
-
-  // const filteredItems = useMemo(() => {
-  //   return items?.filter((cat) => cat?.breeds[0]?.name?.includes(search));
-  // }, [items, search]);
 
   const handleChangeCityFilter = (e: string) => {
     if (e === "Все") {
@@ -89,6 +86,9 @@ export function CatList() {
   }, [filteredItems, page]);
 
   const catList = useMemo(() => {
+    if (slicedItems?.length === 0) {
+      return <div>Ничего не найдено</div>;
+    }
     return slicedItems?.map((cat) => <CatListItem key={cat.id} cat={cat} />);
   }, [slicedItems]);
 
@@ -132,6 +132,12 @@ export function CatList() {
         />
       )}
       <div className={styles.controls}>
+        <SearchInput
+          className={styles.searchInput}
+          placeholder="Введите породу"
+          onChange={onChangeHandler}
+          value={search}
+        />
         <Button
           onClick={() => dispatch(catsActions.clean())}
           className={styles.refresh}
@@ -145,26 +151,24 @@ export function CatList() {
           <NewPost />
           Создать
         </Button>
-        <SearchInput
-          className={styles.searchInput}
-          placeholder="Введите породу"
-          onChange={onChangeHandler}
-          value={search}
+
+        <Checkbox
+          className={styles.checkbox}
+          checked={isLikedFilter}
+          onChange={(e) => setIsLikedFilter(e.target.checked)}
+        >
+          <Heart
+            className={cn(styles.checkboxHeart, {
+              [styles.checked]: isLikedFilter,
+            })}
+          />{" "}
+          Только избранные
+        </Checkbox>
+        <Select
+          value={city}
+          setValue={handleChangeCityFilter}
+          items={uniqueCities}
         />
-        <div className={styles.filter}>
-          <Checkbox
-            className={styles.checkbox}
-            checked={isLikedFilter}
-            onChange={(e) => setIsLikedFilter(e.target.checked)}
-          >
-            Только избранные
-          </Checkbox>
-          <Select
-            value={city}
-            setValue={handleChangeCityFilter}
-            items={uniqueCities}
-          />
-        </div>
       </div>
       <h1>Коты</h1>
       {isLoading && <Loading />}
