@@ -58,3 +58,17 @@
   width: 100%;
   margin: 0 auto;
 }
+
+.error {
+  background-color: rgba(243, 91, 91, 0.397);
+  border-color: red;
+}
+
+.errorMessage {
+  color: red;
+  text-align: center;
+  border: none;
+  padding: 0;
+  font-style: italic;
+  font-size: 12px;
+}
