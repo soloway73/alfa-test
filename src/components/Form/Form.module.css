@@ -4,7 +4,7 @@
   gap: 20px;
   padding: 20px;
   background-color: white;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: var(--shadow);
   border-radius: 20px;
   margin: 20px auto;
   position: absolute;
@@ -37,17 +37,17 @@
 .buttonCancel,
 .buttonSave {
   flex-grow: 1;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: var(--shadow);
   border-radius: 20px;
   color: white;
 }
 
 .buttonCancel {
-  background-color: #ad5454;
+  background-color: var(--reject-color);
 }
 
 .buttonSave {
-  background-color: #3d7e3b;
+  background-color: var(--accept-color);
 }
 
 .formContainer {
@@ -61,11 +61,11 @@
 
 .error {
   background-color: rgba(243, 91, 91, 0.397);
-  border-color: red;
+  border-color: var(--red-accent);
 }
 
 .errorMessage {
-  color: red;
+  color: var(--red-accent);
   text-align: center;
   border: none;
   padding: 0;

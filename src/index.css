@@ -2,6 +2,14 @@
   font-family: Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --main: black;
+  --red-accent: rgb(252, 4, 4);
+  --reject-color: #ad5454;
+  --accept-color: #3d7e3b;
+  --hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.075);
+  --active-shadow: 0 5px 10px rgba(0, 0, 0, 0.123);
+  --shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.384);
+  --border-radius: 20px;
 }
 #root {
   max-width: 1920px;

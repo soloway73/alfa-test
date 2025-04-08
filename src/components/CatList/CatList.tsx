@@ -41,7 +41,7 @@ export function CatList() {
   const itemsPerPage = 10;
 
   const uniqueCities = useMemo(
-    () => Array.from(new Set(items.map((cat) => cat.breeds[0].origin))),
+    () => Array.from(new Set(items.map((cat) => cat?.breeds[0].origin))),
     [items]
   );
 

@@ -6,7 +6,6 @@ import { Layout } from "./components/Layout/Layout.tsx";
 import "./index.css";
 import { store } from "./store/store.ts";
 import { CatPage } from "./Pages/CatPage/CatPage.tsx";
-import FavoritesList from "./Pages/Favorites/Favorites.tsx";
 import { Loading } from "./components/Loading/Loading.tsx";
 
 const CatList = lazy(() => import("./components/CatList/CatList"));
@@ -29,10 +28,6 @@ const router = createBrowserRouter(
               <CatList />
             </Suspense>
           ),
-        },
-        {
-          path: "/favorites",
-          element: <FavoritesList />,
         },
         {
           path: "/cats/:id",

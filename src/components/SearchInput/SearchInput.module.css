@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin: 0 auto;
+  margin: 16px auto;
 }
 .input {
   padding: 10px 15px 10px 35px;
