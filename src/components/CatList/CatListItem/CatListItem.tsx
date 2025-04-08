@@ -1,12 +1,13 @@
-import { ICat } from "../../../interfaces/cat.interface";
-import styles from "./CatListItem.module.css";
-import Heart from "../../../assets/Heart.svg?react";
 import cn from "classnames";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
-import { catsActions } from "../../../store/cats.slice";
-import RemoveIcon from "../../../assets/Remove-icon.svg?react";
 import { useNavigate } from "react-router-dom";
+import Heart from "../../../assets/Heart.svg?react";
+import RemoveIcon from "../../../assets/Remove-icon.svg?react";
+import { ICat } from "../../../interfaces/cat.interface";
+import { catsActions } from "../../../store/cats.slice";
+import { AppDispatch } from "../../../store/store";
+import styles from "./CatListItem.module.css";
+import LoadableImage from "../../LoadableImage/LoadableImage";
 
 export function CatListItem({ cat }: { cat: ICat }) {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,13 +26,13 @@ export function CatListItem({ cat }: { cat: ICat }) {
   const handlerCardClick = () => {
     navigate(`/cats/${cat.id}`);
   };
+
   return (
     <div className={styles.card} onClick={handlerCardClick}>
-      <img
-        className={styles.img}
+      <LoadableImage
         src={cat.url}
         alt={cat.breeds[0].name}
-        loading="lazy"
+        className={styles.img}
       />
       <h3 className={styles.name}>{cat.breeds[0].name}</h3>
       <div className={styles.description}>{cat.breeds[0].description}</div>

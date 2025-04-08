@@ -11,9 +11,54 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/src/index.css" />
   </head>
   <body>
+    <div class="main" id="loader">
+      <span class="stand"></span>
+      <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+          <div class="ear"></div>
+          <div class="ear"></div>
+        </div>
+        <div class="face">
+          <div class="nose"></div>
+          <div class="whisker-container">
+            <div class="whisker"></div>
+            <div class="whisker"></div>
+          </div>
+          <div class="whisker-container">
+            <div class="whisker"></div>
+            <div class="whisker"></div>
+          </div>
+        </div>
+        <div class="tail-container">
+          <div class="tail">
+            <div class="tail">
+              <div class="tail">
+                <div class="tail">
+                  <div class="tail">
+                    <div class="tail">
+                      <div class="tail"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="root"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loader = document.getElementById("loader");
+        if (loader) {
+          loader.classList.add("hidden");
+        }
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
     <script>
       (function () {
